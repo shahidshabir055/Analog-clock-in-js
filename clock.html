@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const HOURHAND = document.querySelector("#hr");
+        const MINUTEHAND = document.querySelector("#mn");
+        const SECONDHAND = document.querySelector("#sc");
+
+
+        function start_clock() {
+            var date = new Date();
+            let hr = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
+
+            let hrPosition = hr * 360 / 12 + ((min * 360 / 60) / 12);
+            let minPosition = (min * 360 / 60) + (sec * 360 / 60) / 60;
+            let secPosition = sec * 360 / 60;
+
+           
+            HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
+            MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+            SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+        }
+
+
+        var interval = setInterval(start_clock, 1000);
+    </script>
+</body>
+
+</html>
